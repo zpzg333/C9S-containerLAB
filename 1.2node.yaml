@@ -1,0 +1,49 @@
+apiVersion: clabernetes.containerlab.dev/v1alpha1
+kind: Topology
+metadata:
+  name: evpn-multihomming
+  namespace: test-network
+spec:
+  imagePull:
+    pullSecrets:
+      - ghcr-secret
+  naming: non-prefixed
+  definition:
+    containerlab: |-
+          # topology documentation: http://containerlab.dev/lab-examples/srl-ceos/
+          name: evpn-multihomming
+
+          topology:
+            kinds:
+              arista_ceos:
+                image: ghcr.io/zpzg333/ceos:4.34.4f   # 레포 주소 
+                env:
+                  CLAB_MGMT_VRF: MGMT
+#아래 부분을 자유롭게  수정하여 Test 수행 
+
+            nodes:
+              #spine1:
+              #kind: arista_ceos
+                  #spine2:
+                  #kind: arista_ceos
+
+              leaf1:
+                kind: arista_ceos
+              leaf2:           
+                kind: arista_ceos
+                  #client1:
+                  ##kind: arista_ceos
+
+            links:
+              #spine to leaf
+              #- endpoints: ["spine1:eth1", "leaf1:eth1"]
+              #- endpoints: ["spine1:eth2", "leaf2:eth1"]
+
+              #- endpoints: ["spine2:eth1", "leaf1:eth2"]
+              ##- endpoints: ["spine2:eth2", "leaf2:eth2"]
+
+              #leaf to clinet
+              ##- endpoints: ["client1:eth1", "leaf1:eth3"]
+              #- endpoints: ["client1:eth2", "leaf2:eth3"]
+              #- endpoints: ["client1:eth3", "leaf1:eth4"]
+              #- endpoints: ["client1:eth4", "leaf2:eth4"]
