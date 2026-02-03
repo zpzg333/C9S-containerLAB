@@ -18,7 +18,6 @@ spec:
                 image: ghcr.io/zpzg333/ceos:4.34.4f   # 레포 주소 
                 env:
                   CLAB_MGMT_VRF: MGMT
-#아래 부분을 자유롭게  수정하여 Test 수행 
             nodes:
               leaf1:
                 kind: arista_ceos
