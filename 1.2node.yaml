@@ -14,19 +14,17 @@ spec:
           name: evpn-multihomming
           topology:
             kinds:
-              arista_ceos1:
-                image: ghcr.io/zpzg333/ceos:4.34.4f   # 레포 주소 
-                env:
-                  CLAB_MGMT_VRF: MGMT
-              arista_ceos2:
-                image: ghcr.io/zpzg333/ceos:4.22.0f   # 레포 주소 
+              arista_ceos:
+                #image: ghcr.io/zpzg333/ceos:4.34.4f   # 레포 주소 
                 env:
                   CLAB_MGMT_VRF: MGMT
             nodes:
               leaf1:
-                kind: arista_ceos1
+                kind: arista_ceos
+                image: ghcr.io/zpzg333/ceos:4.34.4F
               leaf2:           
-                kind: arista_ceos2
+                kind: arista_ceos
+                image: ghcr.io/zpzg333/ceos:4.22.0F
             links:
               #spine to leaf
               - endpoints: ["leaf1:eth1", "leaf2:eth1"]
