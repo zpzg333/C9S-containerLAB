@@ -22,10 +22,10 @@ spec:
               leaf1:
                 kind: arista_ceos
                 image: ghcr.io/zpzg333/ceos:4.34.4F
-              leaf2:           
-                kind: arista_ceos
-                image: ghcr.io/zpzg333/ceos:4.25.5.1M
+              #leaf2:           
+                #kind: arista_ceos
+                #image: ghcr.io/zpzg333/ceos:4.25.5.1M
             links:
               #spine to leaf
-              - endpoints: ["leaf1:eth1", "leaf2:eth1"]
-              - endpoints: ["leaf1:eth2", "leaf2:eth2"]
+              #- endpoints: ["leaf1:eth1", "leaf2:eth1"]
+              #- endpoints: ["leaf1:eth2", "leaf2:eth2"]
