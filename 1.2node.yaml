@@ -15,7 +15,7 @@ spec:
           topology:
             kinds:
               arista_ceos:
-                image: ghcr.io/zpzg333/ceos:4.34.4f   # 레포 주소 
+                image: ghcr.io/zpzg333/ceos:4.34.4F   # 레포 주소 
                 env:
                   CLAB_MGMT_VRF: MGMT
             nodes:
