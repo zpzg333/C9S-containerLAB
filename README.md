@@ -70,6 +70,29 @@ kubectl exec -it <pod-name> -n test-network -- Cli
 - **Private Registry**: GHCR(GitHub Container Registry)에 커스텀 cEOS 이미지 호스팅
 - **EVPN 설계**: Multi-homing(ESI LAG) 기반 고가용성 언더레이/오버레이 설계
 
+## ArgoCD 연동
+
+이 프로젝트는 **ArgoCD(GitOps)** 와 연동되어 있습니다.  
+토폴로지 정의 파일(`1.2node.yaml`)을 GitHub에 push하면 ArgoCD가 자동으로 감지하여  
+Clabernetes Custom Resource를 Kubernetes 클러스터에 배포합니다.
+
+```
+GitHub push (1.2node.yaml 수정)
+        ↓
+ArgoCD 자동 감지 (auto-sync)
+        ↓
+Clabernetes Topology CR 배포
+        ↓
+cEOS Pod 자동 생성 (test-network namespace)
+```
+
+| 항목 | 내용 |
+|---|---|
+| GitOps 도구 | ArgoCD |
+| 배포 트리거 | GitHub push |
+| 대상 | Clabernetes Topology CR (1.2node.yaml) |
+| ArgoCD 서비스 | www.syargocd.com |
+
 ## 배경
 
 실무에서 접하는 EVPN 아키텍처를 가상 환경에서 직접 검증하고,  
