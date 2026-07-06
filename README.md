@@ -15,7 +15,7 @@ Arista cEOS 기반의 가상 네트워크 랩을 **클라우드 네이티브 환
 
 ```
 # 노드와 링크를 자유롭게 수정하여 원하는 네트워크 구성 즉각 배포 #
-# 이미지는 GHCR 기반 다운도르
+# 이미지는 GHCR 기반 다운로드 # 
 
 Ex) yaml 예시 아래 내용을 필요에 맞도록 수정
             nodes:
@@ -82,7 +82,3 @@ Clabernetes Topology CR 배포
         ↓
 cEOS Pod 자동 생성 (test-network namespace)
 ```
-
-
-실무에서 접하는 EVPN 아키텍처를 가상 환경에서 직접 검증하고,  
-Kubernetes 기반의 클라우드 네이티브 랩 환경 구축 역량을 쌓기 위한 프로젝트입니다.
