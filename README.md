@@ -14,23 +14,30 @@ Arista cEOS 기반의 가상 네트워크 랩을 **클라우드 네이티브 환
 ## 구현 토폴로지
 
 ```
-EVPN Multi-homing (ESI LAG)
+# 노드와 링크를 자유롭게 수정하여 원하는 네트워크 구성 즉각 배포 #
+# 이미지는 GHCR 기반 다운도르
 
-      [CE Device]
-          |
-    ------+------
-    |            |
-  [leaf1]      [leaf2]
-  (cEOS)       (cEOS)
-    |            |
-    +----BGP-----+
-      EVPN Fabric
+Ex) yaml 예시 아래 내용을 필요에 맞도록 수정
+            nodes:
+              leaf1:
+                kind: arista_ceos
+                #image: ghcr.io/zpzg333/ceos:4.34.4F
+              leaf2:           
+                kind: arista_ceos
+                #image: ghcr.io/zpzg333/ceos:4.34.4M
+              client1:           
+                kind: arista_ceos
+                #image: ghcr.io/zpzg333/ceos:4.34.4M
+              client2:           
+                kind: arista_ceos
+                #image: ghcr.io/zpzg333/ceos:4.34.4M
+              
+            links:
+              #spine to leaf
+              - endpoints: ["leaf1:eth8", "leaf2:eth8"]
+              - endpoints: ["leaf1:eth1", "client1:eth1"]
+              - endpoints: ["leaf2:eth1", "client2:eth1"]
 ```
-
-- **leaf1, leaf2**: Arista cEOS 4.34.4F
-- **EVPN Multi-homing**: ESI(Ethernet Segment Identifier) 기반 이중화
-- **언더레이**: BGP / 오버레이: EVPN (MP-BGP)
-
 
 ## 구조
 
@@ -59,7 +66,6 @@ kubectl exec -it <pod-name> -n test-network -- Cli
 - **Clabernetes**: containerlab 토폴로지를 K8s Custom Resource(CR)로 정의하여 클러스터에서 실행
 - **cEOS on K8s**: Arista cEOS 컨테이너를 Kubernetes Pod로 운영
 - **Private Registry**: GHCR(GitHub Container Registry)에 커스텀 cEOS 이미지 호스팅
-- **EVPN 설계**: Multi-homing(ESI LAG) 기반 고가용성 언더레이/오버레이 설계
 
 ## ArgoCD 연동
 
